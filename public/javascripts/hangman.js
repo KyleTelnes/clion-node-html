@@ -1,24 +1,25 @@
 function hangmanGame(){
+
     // Initialize # of lives
     let lives = 5;
     // Initialize Game (choose category and size of word)
     let category = chooseCategory();
     let word = chooseWord(category);
+    console.log(word);
+
     // Keeps track of the guesses
     let guesses = [];
 
-    while (lives !== 0) {
-        let wordBox = document.getElementById("word");
-        let correct = document.createElement('div');
-        for (let i = 0; i < word.length; i++) {
-            correct.setAttribute('id', 'hangmanWord');
-            let wordDisplay = document.createElement('div');
-            wordDisplay.setAttribute('id', 'guess');
-            wordDisplay.innerHTML = "_";
-            guesses.push(wordDisplay);
-            wordBox.appendChild(correct);
-            correct.appendChild(wordDisplay);
-        }
+    let wordBox = document.getElementById("word");
+    let correct = document.createElement('div');
+    for (let i = 0; i < word.length; i++) {
+        correct.setAttribute('id', 'hangmanWord');
+        let wordDisplay = document.createElement('div');
+        wordDisplay.setAttribute('id', 'guess');
+        wordDisplay.innerHTML = "_";
+        guesses.push(wordDisplay);
+        wordBox.appendChild(correct);
+        correct.appendChild(wordDisplay);
     }
 }
 function updateProgress(){
