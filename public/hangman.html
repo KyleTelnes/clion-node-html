@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="javascripts/hangman.js"></script>
+    <title>Hangman</title>
+</head>
+<body>
+    <div>
+        <h1>Hangman</h1>
+    </div>
+    <div>
+        <div>
+            <h2>Choose a Category</h2>
+            <label for="composers">Composers</label>
+            <input type="radio" id="composers" name="category" checked>
+            <label for="fruit">Fruit</label>
+            <input type="radio" id="fruit" name="category">
+            <h2>Choose the Maximum Length of Words (default 15)</h2>
+            <label for="number">Minimum: 5 Maximum: 15</label>
+            <input type="number" id="number" min="5" max="15" value="15">
+        </div>
+        <div id="word"></div>
+        <div>
+            <label for="guessBox">Guess a Letter or the Word Here</label>
+            <input type="text" id="guessBox">
+        </div>
+    </div>
+    <div>
+        <label for="guesses">Guesses</label>
+        <progress id="guesses" value="100" max="100"></progress>
+    </div>
+    <div>
+        <button type="button" id="startGame" onclick="hangmanGame()">Play</button>
+    </div>
+</body>
+</html>
