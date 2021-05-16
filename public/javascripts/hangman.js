@@ -132,11 +132,7 @@ function makeGuess() {
     // If lives are 0, locks the user out of guessing and messages Game Over
     if (lives === 0) {
         document.getElementById("guessButton").disabled = true;
-        let notFound = document.createElement("p");
-        notFound.id = "notFound";
-        notFound.style = "color: red; padding-left: 5px";
-        notFound.innerHTML = "Game Over";
-        document.getElementById("makeGuess").appendChild(notFound);
+        showLossMessage();
         return;
     }
     // Reads the guess in the textbox on the page
@@ -148,9 +144,9 @@ function makeGuess() {
     // If letter has already been guessed, displays message and returns
     for (let i = 0; i < guesses.length; i++) {
         if (guesses[i] === guess) {
-            let notFound = document.createElement("p");
+            let notFound = document.createElement("div");
             notFound.id = "notFound";
-            notFound.style = "color: red; padding-left: 5px";
+            notFound.style = "color: red; padding-left: 10px";
             notFound.innerHTML = "letter has already been guessed";
             document.getElementById("makeGuess").appendChild(notFound);
             return;
@@ -173,11 +169,7 @@ function makeGuess() {
             while(lives !== 0) {
                 updateProgress();
             }
-            let notFound = document.createElement("div");
-            notFound.id = "notFound";
-            notFound.style = "color: red; padding-left: 5px;"
-            notFound.innerHTML = "Game Over";
-            document.getElementById("makeGuess").appendChild(notFound);
+            showLossMessage();
         }
     }
     // Guess is a letter
@@ -199,20 +191,28 @@ function makeGuess() {
         // Lose a life if the letter is wrong
         else {
             updateProgress();
-            let notFound = document.createElement("p");
+            let notFound = document.createElement("div");
             notFound.id = "notFound";
-            notFound.style = "color: red; padding-left: 5px";
+            notFound.style = "color: red; padding-left: 10px";
             notFound.innerHTML = "Wrong letter";
             document.getElementById("makeGuess").appendChild(notFound);
         }
     }
 }
-
+// Displays the victory message when a game is won
 function showVictoryMessage() {
     let wonGame = document.createElement("div");
     wonGame.id = "notFound";
-    wonGame.style = "color: green; padding-left: 5px;"
+    wonGame.style = "color: green; padding-left: 10px;"
     wonGame.innerHTML = "Congratulations, You Won!";
     document.getElementById("makeGuess").appendChild(wonGame);
     document.getElementById("guessButton").disabled = true;
+}
+// Displays the "Game Over" message when a game is lost
+function showLossMessage() {
+    let notFound = document.createElement("div");
+    notFound.id = "notFound";
+    notFound.style = "color: red; padding-left: 10px;"
+    notFound.innerHTML = "Game Over";
+    document.getElementById("makeGuess").appendChild(notFound);
 }
