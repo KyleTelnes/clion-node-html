@@ -141,6 +141,10 @@ function makeGuess() {
     }
     // Reads the guess in the textbox on the page
     let guess = document.getElementById("guessBox").value;
+    // If the guess is nothing (textbox was empty) answer will not count
+    if (guess === "") {
+        return;
+    }
     // If letter has already been guessed, displays message and returns
     for (let i = 0; i < guesses.length; i++) {
         if (guesses[i] === guess) {

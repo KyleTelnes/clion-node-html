@@ -14,10 +14,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="container">
+        <div class="container bg-secondary text-white">
             <h1>Hangman</h1>
         </div>
-        <div class="container">
+        <div class="container border border-secondary">
             <h2>Choose a Category</h2>
             <div class="form-check form-check-inline">
                 <label class="form-check-label" for="composers">Composers</label>
@@ -36,20 +36,25 @@
         <table class="table table-bordered align-middle">
             <tbody id="word" class=""></tbody>
         </table>
-        <div class="container">
-            <label for="guessBox">Guess a Letter or the Word Here:</label>
+        <div class="container border border-secondary">
+            <div class="container">
+                <label for="guessBox">Guess a Letter or the Word Here:</label>
+            </div>
+            <div class="container input-group">
+                <input type="text" id="guessBox">
+                <button type="button" id="guessButton" onclick="makeGuess();">Guess</button>
+            </div>
+            <div id="makeGuess"></div>
+            <div class="container">
+                <label for="guesses">Guesses:</label>
+                <progress id="guesses" value="100" max="100"></progress>
+            </div>
+            <div class="container d-block">
+                <button type="button" id="startGame" onclick="hangmanGame();">Start</button>
+            </div>
         </div>
-        <div class="container input-group">
-            <input type="text" id="guessBox">
-            <button type="button" id="guessButton" onclick="makeGuess();">Guess</button>
-        </div>
-        <div id="makeGuess"></div>
-        <div class="container">
-            <label for="guesses">Guesses:</label>
-            <progress id="guesses" value="100" max="100"></progress>
-        </div>
-        <div class="container">
-            <button type="button" id="startGame" onclick="hangmanGame();">Start</button>
+        <div>
+            <a href="index.html">Homepage</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
