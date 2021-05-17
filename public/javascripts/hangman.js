@@ -13,6 +13,7 @@ function hangmanGame(){
         document.getElementById("guessButton").disabled = false;
         document.getElementById("guesses").value = 100;
         document.getElementById("guessBox").value = "";
+        document.getElementById("hangmanImage").src = "images/hangman_01.jpg";
         let element = document.getElementById("word");
         element.removeChild(element.firstChild);
         // Removes any "wrong" messages
@@ -43,10 +44,32 @@ function hangmanGame(){
         correct.appendChild(wordDisplay);
     }
 }
-// Updates the number of lives and progress bar on the page when a wrong guess is made
+// Updates the number of lives and progress bar/image on the page when a wrong guess is made
 function updateProgress(){
     document.getElementById('guesses').value -= 20;
     lives--;
+    if (lives === 4) {
+        document.getElementById("hangmanImage").src = "images/hangman_02.jpg";
+    }
+    if (lives === 3) {
+        document.getElementById("hangmanImage").src = "images/hangman_03.jpg";
+    }
+    if (lives === 2) {
+        document.getElementById("hangmanImage").src = "images/hangman_04.jpg";
+    }
+    if (lives === 1) {
+        document.getElementById("hangmanImage").src = "images/hangman_05.jpg";
+    }
+    if (lives === 0) {
+        document.getElementById("hangmanImage").src = "images/hangman_07.jpg";
+        //resets red messages
+        if (document.getElementById("notFound") !== null) {
+            let deleteThis = document.getElementById("makeGuess");
+            deleteThis.removeChild(deleteThis.firstChild);
+        }
+        document.getElementById("guessButton").disabled = true;
+        showLossMessage();
+    }
 }
 // Chooses a random word from the array given the length and category constraints
 // provided by the user
@@ -129,12 +152,6 @@ function makeGuess() {
     if (word === undefined) {
         return;
     }
-    // If lives are 0, locks the user out of guessing and messages Game Over
-    if (lives === 0) {
-        document.getElementById("guessButton").disabled = true;
-        showLossMessage();
-        return;
-    }
     // Reads the guess in the textbox on the page
     let guess = document.getElementById("guessBox").value;
     // If the guess is nothing (textbox was empty) answer will not count
@@ -169,7 +186,6 @@ function makeGuess() {
             while(lives !== 0) {
                 updateProgress();
             }
-            showLossMessage();
         }
     }
     // Guess is a letter
@@ -190,12 +206,12 @@ function makeGuess() {
         }
         // Lose a life if the letter is wrong
         else {
-            updateProgress();
             let notFound = document.createElement("div");
             notFound.id = "notFound";
             notFound.style = "color: red; padding-left: 10px";
             notFound.innerHTML = "Wrong letter";
             document.getElementById("makeGuess").appendChild(notFound);
+            updateProgress();
         }
     }
 }
