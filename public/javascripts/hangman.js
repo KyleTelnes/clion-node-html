@@ -114,6 +114,7 @@ function chooseCategory() {
         {"word": "passionfruit"}
         ]
     }
+    console.log(categories);
     if (document.getElementById("composers").checked) {
         return categories["Famous Composers"];
     }
